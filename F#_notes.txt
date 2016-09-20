@@ -1,0 +1,2 @@
+use F# by type in fsharpi keyword in shell. 
+vim .fs file
