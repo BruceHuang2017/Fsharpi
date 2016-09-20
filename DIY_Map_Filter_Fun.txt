@@ -1,0 +1,64 @@
+/* created by Bruce sep 7, 2016, 4:04 PM */
+
+/* create map function: */
+
+let rec Map f l = 
+	match l with
+	| [] -> []
+	| a::x -> (f a)::(Map f x);;
+
+/* create filter function: */
+
+let rec Filter f l =
+	match l with
+	| [] -> []
+	| a::x -> 
+		match (f a) with
+		| true -> a::(Filter f x)
+		| false -> (Filter f x);;
+
+
+/* test functions: */
+
+(Map function test):
+
+> let rec Map f l = 
+-     match l with
+-     | [] -> []
+-     | a::x -> (f a)::(Map f x);;
+
+val Map : f:('a -> 'b) -> l:'a list -> 'b list
+
+> Map (fun x -> x * 2) [1;2;3;4;5];;
+val it : int list = [2; 4; 6; 8; 10]
+> let MapWithF = Map (fun x -> x * 2);;
+
+val MapWithF : (int list -> int list)
+
+> MapWithF [1;2;3;4;5];;
+val it : int list = [2; 4; 6; 8; 10]
+
+(Filter function test):
+
+> let rec Filter f l =
+-     match l with
+-     | [] -> []
+-     | a::x -> 
+-         match (f a) with
+-         | true -> a::(Filter f x)
+-         | false -> (Filter f x);;
+
+val Filter : f:('a -> bool) -> l:'a list -> 'a list
+
+> 
+- Filter (fun x -> x % 2 = 0) [1;2;3;4;5];;
+val it : int list = [2; 4]
+> let FilterWithF = Filter (fun x -> x % 2 = 0);;
+
+val FilterWithF : (int list -> int list)
+
+> FilterWithF [1;2;3;4;5];;
+val it : int list = [2; 4]
+
+
+
